@@ -4,7 +4,10 @@ from .form import BookForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.views.decorators.cache import never_cache
 
+
+@never_cache
 @login_required
 def book_list(request):
     search=request.GET.get('search')
@@ -26,6 +29,7 @@ def book_list(request):
        
     return render(request,"books/book_list.html",{"books":books,"categories":categories})
 
+@never_cache
 @login_required
 def book_create(request):
     if request.method == "POST":
@@ -42,6 +46,7 @@ def book_create(request):
 
     return render(request, "books/book_form.html", {"form":form}) 
 
+@never_cache
 @login_required
 def book_update(request,pk):
     book=get_object_or_404(Book,pk=pk)
@@ -58,7 +63,7 @@ def book_update(request,pk):
 
     return render(request, "books/book_form.html", {"form":form})
 
-
+@never_cache
 @login_required
 def book_delete(request,pk):
     book=get_object_or_404(Book,pk=pk)
