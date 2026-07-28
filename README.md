@@ -27,3 +27,5 @@ A Django web application to manage a personal book collection
 ##  Author
 
 ** Sareena**
+
+Python & Django Developer (Learner)
